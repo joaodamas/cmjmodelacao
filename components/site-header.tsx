@@ -47,7 +47,6 @@ export function SiteHeader() {
                 <span className="brand-cmj">CMJ</span>
                 <span className="brand-name">Modelação</span>
               </strong>
-              <span className="spec-label mt-1 block">Moldes em EPS · Fundição</span>
             </span>
           </Link>
 
