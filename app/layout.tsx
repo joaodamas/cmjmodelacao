@@ -1,30 +1,46 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { Inter, Sora } from "next/font/google";
 import { ConversionTracking } from "@/components/conversion-tracking";
 import { FirebaseAnalytics } from "@/components/firebase-analytics";
 import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"]
+});
+
+const display = Sora({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  weight: ["500", "600", "700"]
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://cmj.jpproject.com.br"),
-  title: "CMJ Modelação | Moldes em Isopor para Fundição",
+  title: "CMJ Modelação | Moldes em Isopor para Fundição em EPS",
   description:
-    "Fabricação de moldes em isopor para fundição em alumínio, aço e ferro fundido. Estrutura CNC, acabamento técnico e atendimento industrial em São Bernardo do Campo/SP.",
+    "Fabricação de moldes em isopor para fundição em alumínio, aço e ferro fundido. Modelação industrial com estrutura CNC em São Bernardo do Campo/SP.",
   keywords: [
     "moldes em isopor para fundição",
+    "moldes em EPS",
     "modelação industrial",
-    "moldes para fundição",
     "moldes para alumínio",
     "moldes para aço",
     "moldes para ferro fundido",
     "CNC router modelação",
-    "modelação em São Bernardo do Campo",
-    "moldes industriais sob medida"
+    "modelação São Bernardo do Campo",
+    "moldes industriais sob medida",
+    "modelos para fundição"
   ],
   openGraph: {
-    title: "CMJ Modelação | Moldes em Isopor para Fundição",
+    title: "CMJ Modelação | Moldes em Isopor para Fundição em EPS",
     description:
-      "Moldes em isopor para fundição com estrutura CNC, acabamento técnico e atendimento B2B industrial.",
+      "Modelos em EPS para fundições, ferramentarias, estamparias e indústria automotiva. Estrutura CNC, acabamento técnico e produção sob medida.",
     url: "https://cmj.jpproject.com.br",
     siteName: "CMJ Modelação",
     images: [
@@ -40,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CMJ Modelação | Moldes em Isopor para Fundição",
+    title: "CMJ Modelação | Moldes em Isopor para Fundição em EPS",
     description:
-      "Fabricação de moldes em isopor para fundição em alumínio, aço e ferro fundido com estrutura CNC.",
+      "Modelos em EPS para fundição em alumínio, aço e ferro fundido. Estrutura CNC em São Bernardo do Campo/SP.",
     images: ["/opengraph-image"]
   },
   alternates: {
@@ -61,7 +77,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" className={`${inter.variable} ${display.variable}`}>
       <body>
         {gtmId ? (
           <Script id="gtm" strategy="afterInteractive">

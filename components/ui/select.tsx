@@ -2,11 +2,40 @@
 
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { Check, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const Select = SelectPrimitive.Root;
 const SelectValue = SelectPrimitive.Value;
+
+const Chevron = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.4}
+    strokeLinecap="square"
+    width={16}
+    height={16}
+    {...props}
+  >
+    <path d="M6 9l6 6 6-6" />
+  </svg>
+);
+
+const TickMark = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={1.6}
+    strokeLinecap="square"
+    width={14}
+    height={14}
+    {...props}
+  >
+    <path d="M4 12l5 5 11-12" />
+  </svg>
+);
 
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
@@ -15,14 +44,14 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "flex h-11 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+      "flex h-11 w-full items-center justify-between border border-input bg-background px-3 py-2 text-sm transition-colors hover:border-foreground/30 focus:outline-none focus:border-accent disabled:cursor-not-allowed disabled:opacity-50",
       className
     )}
     {...props}
   >
     {children}
     <SelectPrimitive.Icon asChild>
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <Chevron className="ml-2 h-4 w-4 text-foreground/60" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ));
@@ -36,7 +65,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "relative z-50 min-w-32 overflow-hidden rounded-md border bg-card text-card-foreground shadow-md",
+        "relative z-50 min-w-32 overflow-hidden border border-border bg-white text-card-foreground shadow-industrial",
         position === "popper" && "translate-y-1",
         className
       )}
@@ -56,14 +85,14 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-2 pl-8 pr-2 text-sm outline-none focus:bg-secondary",
+      "relative flex w-full cursor-default select-none items-center py-2 pl-8 pr-3 text-sm outline-none transition-colors data-[highlighted]:bg-secondary data-[state=checked]:text-primary",
       className
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center text-accent">
       <SelectPrimitive.ItemIndicator>
-        <Check className="h-4 w-4" />
+        <TickMark className="h-3.5 w-3.5" />
       </SelectPrimitive.ItemIndicator>
     </span>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>

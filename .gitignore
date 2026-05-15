@@ -24,3 +24,7 @@ firebase-debug.log*
 .DS_Store
 Thumbs.db
 .vscode
+.claude
+
+# Originais brutos (já copiados/renomeados para public/portfolio)
+/Artefatos/

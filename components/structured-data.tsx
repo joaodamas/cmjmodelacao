@@ -6,12 +6,17 @@ export function StructuredData() {
   const data = [
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": ["LocalBusiness", "Manufacturer"],
       "@id": `${baseUrl}/#business`,
       name: "CMJ Modelação",
+      legalName: "CMJ Modelação",
       url: baseUrl,
-      telephone: "+55 11 4342-7908",
-      areaServed: "Brasil",
+      logo: `${baseUrl}/icon.svg`,
+      image: `${baseUrl}/opengraph-image`,
+      telephone: "+55 11 95819-0776",
+      email: contact.email,
+      priceRange: "$$",
+      areaServed: ["Brasil", "São Paulo", "ABC Paulista"],
       address: {
         "@type": "PostalAddress",
         addressLocality: "São Bernardo do Campo",
@@ -19,21 +24,59 @@ export function StructuredData() {
         addressCountry: "BR"
       },
       description:
-        "Fabricação de moldes em isopor para fundição em alumínio, aço e ferro fundido com estrutura CNC e acabamento técnico.",
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+55 11 95819-0776",
-        contactType: "sales",
-        availableLanguage: "Portuguese"
-      },
+        "Fabricação de moldes em isopor (EPS) para fundição em alumínio, aço e ferro fundido. Modelação industrial com estrutura CNC em São Bernardo do Campo/SP.",
+      knowsAbout: [
+        "Modelos em EPS para fundição",
+        "Moldes em isopor",
+        "Modelação industrial",
+        "Fundição em alumínio",
+        "Fundição em aço",
+        "Fundição em ferro fundido",
+        "Usinagem CNC Router",
+        "Corte a fio"
+      ],
+      sameAs: [`https://${contact.site}`],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          opens: "08:00",
+          closes: "17:30"
+        }
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "+55 11 95819-0776",
+          contactType: "sales",
+          availableLanguage: ["Portuguese"]
+        }
+      ],
       makesOffer: services.map((service) => ({
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: service.title,
-          description: service.description
+          description: service.problem,
+          provider: { "@id": `${baseUrl}/#business` }
         }
       }))
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${baseUrl}/#service-moldes-isopor`,
+      name: "Moldes em isopor para fundição",
+      serviceType: "Modelação industrial",
+      provider: { "@id": `${baseUrl}/#business` },
+      areaServed: "Brasil",
+      description:
+        "Fabricação de modelos em EPS para processos de fundição em alumínio, aço e ferro fundido, com estrutura CNC própria.",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "BRL",
+        availability: "https://schema.org/InStock"
+      }
     },
     {
       "@context": "https://schema.org",
@@ -50,12 +93,11 @@ export function StructuredData() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
       name: "CMJ Modelação",
       url: baseUrl,
       inLanguage: "pt-BR",
-      publisher: {
-        "@id": `${baseUrl}/#business`
-      }
+      publisher: { "@id": `${baseUrl}/#business` }
     }
   ];
 

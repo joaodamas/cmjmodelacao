@@ -4,21 +4,28 @@
 
 :root {
   --background: 0 0% 100%;
-  --foreground: 215 28% 17%;
+  --foreground: 215 32% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 215 28% 17%;
-  --primary: 215 72% 20%;
+  --card-foreground: 215 32% 12%;
+  /* Azul institucional CMJ — naval profundo */
+  --primary: 215 70% 14%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 210 20% 96%;
-  --secondary-foreground: 215 28% 17%;
-  --muted: 210 18% 94%;
-  --muted-foreground: 215 13% 43%;
-  --accent: 202 86% 45%;
+  /* Off-white industrial */
+  --secondary: 210 17% 96%;
+  --secondary-foreground: 215 32% 12%;
+  /* Cinza concreto */
+  --muted: 215 14% 94%;
+  --muted-foreground: 215 14% 38%;
+  /* Azul aço / elétrico */
+  --accent: 210 92% 48%;
   --accent-foreground: 0 0% 100%;
-  --border: 214 20% 88%;
-  --input: 214 20% 88%;
-  --ring: 202 86% 45%;
-  --radius: 0.5rem;
+  /* Grafite (para superfícies escuras secundárias) */
+  --graphite: 215 25% 18%;
+  --steel: 215 18% 32%;
+  --border: 214 16% 88%;
+  --input: 214 16% 86%;
+  --ring: 210 92% 48%;
+  --radius: 2px;
 }
 
 * {
@@ -32,27 +39,160 @@ html {
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.section-padding {
-  @apply py-16 md:py-24;
+::selection {
+  background: hsl(var(--accent) / 0.85);
+  color: white;
 }
 
-.industrial-grid {
-  background-image:
-    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-  background-size: 44px 44px;
+/* Tipografia editorial */
+.font-display {
+  font-family: var(--font-display), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: -0.018em;
+}
+
+.font-mono {
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 }
 
 .cmj-wordmark {
-  font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-  letter-spacing: 0.02em;
+  font-family: var(--font-display), "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  letter-spacing: 0.04em;
+  font-feature-settings: "ss01" 1;
 }
 
+/* Spacing por seção — densidade industrial */
+.section-padding {
+  @apply py-20 md:py-28;
+}
+
+/* Eyebrows técnicos com numeração */
+.eyebrow {
+  @apply inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-accent;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Blueprint grid sutil */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: -1px -1px;
+}
+
+/* Fundo claro com ruído técnico sutil, sem malha/grade aparente */
+.surface-noise {
+  background-color: hsl(var(--secondary));
+  background-image:
+    radial-gradient(circle at 18% 24%, rgba(8, 19, 38, 0.035) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 72% 68%, rgba(20, 123, 214, 0.03) 0 1px, transparent 1.6px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(241, 245, 249, 0.72));
+  background-size: 19px 19px, 27px 27px, 100% 100%;
+  background-position: 0 0, 8px 11px, 0 0;
+}
+
+.blueprint-grid-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Textura de concreto/grafite leve */
+.concrete-texture {
+  background-color: hsl(var(--graphite));
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.04), transparent 35%),
+    radial-gradient(circle at 85% 75%, rgba(56, 145, 255, 0.06), transparent 40%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent);
+}
+
+/* Linhas técnicas para sublinhar títulos */
+.tech-rule {
+  position: relative;
+}
+
+.tech-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -14px;
+  width: 44px;
+  height: 3px;
+  background: hsl(var(--accent));
+}
+
+/* Hover técnico em imagens do portfólio */
+.tech-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.tech-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 19, 38, 0) 50%, rgba(8, 19, 38, 0.72) 100%);
+  z-index: 1;
+  transition: opacity 0.4s ease;
+}
+
+.tech-card:hover::before {
+  background: linear-gradient(180deg, rgba(8, 19, 38, 0.15) 0%, rgba(8, 19, 38, 0.85) 100%);
+}
+
+.tech-card img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.tech-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Cantos de blueprint nos cards (corner ticks) */
+.corner-ticks {
+  position: relative;
+}
+
+.corner-ticks::before,
+.corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: hsl(var(--accent));
+  border-style: solid;
+}
+
+.corner-ticks::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+
+.corner-ticks::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* Marquee de clientes (suave, sem hover-bounce) */
 .logo-marquee {
-  animation: logo-marquee 34s linear infinite;
+  animation: logo-marquee 42s linear infinite;
 }
 
 .logo-marquee:hover {
@@ -68,13 +208,95 @@ body {
   }
 }
 
+/* Scan rule — linha técnica que aparece no topo de cada seção */
+.scan-rule {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: hsl(var(--accent) / 0.4);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none;
+}
+
+.scan-rule[data-revealed="true"] {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-rule {
+    transform: scaleX(1);
+    transition: none;
+  }
+}
+
+/* Scroll progress bar no topo */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: hsl(var(--accent));
+  z-index: 60;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  transition: transform 0.1s linear;
+  pointer-events: none;
+}
+
+/* Focus visível, industrial */
+*:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Detalhes mono para legendas técnicas */
+.spec-label {
+  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: hsl(var(--muted-foreground));
+}
+
+/* CTA fixo mobile */
+.mobile-cta-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 45;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.96) 30%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+@media (min-width: 768px) {
+  .mobile-cta-bar {
+    display: none;
+  }
+}
+
+/* Empurra o conteúdo enquanto a barra fixa mobile estiver visível,
+   evitando que o footer fique parcialmente coberto. */
+@media (max-width: 767px) {
+  body.has-mobile-cta {
+    padding-bottom: 5.5rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .logo-marquee {
+  .logo-marquee,
+  .tech-card img {
     animation: none;
     transform: none;
+    transition: none;
   }
 }

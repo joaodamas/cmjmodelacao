@@ -10,12 +10,17 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "1rem",
+      padding: { DEFAULT: "1.25rem", lg: "2rem" },
       screens: {
-        "2xl": "1180px"
+        "2xl": "1240px"
       }
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ['ui-monospace', '"SF Mono"', '"JetBrains Mono"', "Menlo", "Consolas", "monospace"]
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -41,15 +46,22 @@ const config: Config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
-        }
+        },
+        graphite: "hsl(var(--graphite))",
+        steel: "hsl(var(--steel))"
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)"
+        md: "calc(var(--radius) - 1px)",
+        sm: "calc(var(--radius) - 2px)"
       },
       boxShadow: {
-        industrial: "0 18px 50px rgba(15, 23, 42, 0.10)"
+        industrial: "0 24px 60px -20px rgba(8, 19, 38, 0.22)",
+        "industrial-lg": "0 40px 90px -28px rgba(8, 19, 38, 0.32)",
+        "accent-glow": "0 0 0 1px hsl(var(--accent) / 0.4), 0 12px 32px -8px hsl(var(--accent) / 0.35)"
+      },
+      letterSpacing: {
+        tightest: "-0.025em"
       }
     }
   },

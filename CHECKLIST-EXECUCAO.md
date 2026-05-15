@@ -63,8 +63,8 @@
 - [x] Criar área de clientes em carrossel
 - [x] Reduzir aparência de template/IA com layout menos dependente de cards e ícones
 - [x] Refinar animações para uso mais discreto
-- [ ] Inserir fotos reais dos moldes em `public/portfolio`
-- [ ] Substituir placeholders da galeria por imagens reais
+- [x] Inserir fotos reais dos moldes em `public/portfolio`
+- [x] Substituir placeholders da galeria por imagens reais
 - [ ] Inserir logos reais dos clientes, se disponíveis
 - [ ] Validar qualidade e enquadramento das imagens em mobile
 
@@ -110,7 +110,7 @@
 - [x] Criar instruções para otimização/substituição de imagens reais
 - [x] Adicionar headers básicos de segurança no Next
 - [ ] Rodar Lighthouse após inserir imagens reais
-- [ ] Ajustar peso das imagens reais antes do deploy
+- [x] Ajustar peso das imagens reais antes do deploy
 - [ ] Testar navegação em dispositivos móveis reais
 
 ## 9. Deploy
@@ -124,6 +124,7 @@
 - [x] Configurar domínio `cmj.jpproject.com.br` no Firebase Hosting
 - [ ] Configurar variáveis de ambiente de produção, se aplicável
 - [x] Rodar primeiro deploy de produção
+- [x] Publicar atualização com fotos reais e direção visual mais industrial
 - [x] Configurar DNS do domínio `cmj.jpproject.com.br`
 - [x] Validar SSL
 - [ ] Testar formulário e WhatsApp em produção
@@ -134,7 +135,7 @@
 - [ ] Conferir todos os links do menu
 - [ ] Conferir CTAs em desktop e mobile
 - [x] Tornar contatos do footer clicáveis
-- [ ] Conferir imagens reais do portfólio
+- [x] Conferir imagens reais do portfólio
 - [ ] Conferir clientes/logos
 - [x] Conferir SEO no HTML final
 - [ ] Conferir tags de tracking
