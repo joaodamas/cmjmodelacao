@@ -32,35 +32,6 @@ export function SiteHeader() {
 
   return (
     <div className="sticky top-0 z-40 w-full">
-      {/* Top bar industrial — sempre presente, contraste alto, info de contato + selo B2B */}
-      <div className="hidden bg-graphite text-white md:block">
-        <div className="container flex h-9 items-center justify-between gap-6 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-white/65">
-          <div className="flex items-center gap-5">
-            <span className="inline-flex items-center gap-2">
-              <span className="inline-block h-1.5 w-1.5 bg-accent" />
-              {contact.location}
-            </span>
-            <span className="hidden lg:inline">{contact.hours}</span>
-          </div>
-          <div className="flex items-center gap-5">
-            <a
-              href={headerWhatsapp}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 hover:text-white"
-              data-track="whatsapp_click_topbar"
-            >
-              <WhatsappGlyph className="h-3.5 w-3.5 text-accent" />
-              {contact.whatsapp} · WhatsApp
-            </a>
-            <span className="hidden items-center gap-2 border-l border-white/15 pl-5 text-white/80 lg:inline-flex">
-              <span className="inline-block h-1 w-1 bg-accent" />
-              Atendimento B2B industrial
-            </span>
-          </div>
-        </div>
-      </div>
-
       <header
         className={cn(
           "w-full transition-colors duration-300",
@@ -70,18 +41,13 @@ export function SiteHeader() {
         )}
       >
         <div className="container flex h-[68px] items-center justify-between gap-4">
-          <Link href="#" className="flex items-center gap-3" aria-label="CMJ Modelação — início">
-            <span
-              aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center bg-primary text-white font-display text-base font-bold tracking-tight shadow-[0_4px_16px_-4px_rgba(8,19,38,0.4)]"
-            >
-              CMJ
-            </span>
-            <span className="leading-tight">
-              <strong className="cmj-wordmark block text-[1.05rem] font-bold uppercase text-primary md:text-[1.15rem]">
-                CMJ Modelação
+          <Link href="#" className="group flex items-center" aria-label="CMJ Modelação — início">
+            <span className="leading-none">
+              <strong className="cmj-wordmark brand-lockup block text-primary">
+                <span className="brand-cmj">CMJ</span>
+                <span className="brand-name">Modelação</span>
               </strong>
-              <span className="spec-label block">Moldes em EPS · Fundição</span>
+              <span className="spec-label mt-1 block">Moldes em EPS · Fundição</span>
             </span>
           </Link>
 

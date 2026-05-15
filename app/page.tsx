@@ -1287,14 +1287,9 @@ function Footer() {
     <footer className="relative overflow-hidden bg-graphite pt-20 text-white">
       <div className="container relative grid gap-12 pb-12 md:grid-cols-[1.3fr_0.8fr_0.8fr_0.9fr]">
         <div>
-          <span
-            aria-hidden="true"
-            className="mb-5 inline-flex h-10 w-10 items-center justify-center bg-white text-primary font-display text-base font-bold"
-          >
-            CMJ
-          </span>
-          <strong className="cmj-wordmark block text-xl font-bold uppercase text-white">
-            CMJ Modelação
+          <strong className="cmj-wordmark brand-lockup brand-lockup-footer block text-white">
+            <span className="brand-cmj">CMJ</span>
+            <span className="brand-name">Modelação</span>
           </strong>
           <p className="mt-2 spec-label !text-white/55">Moldes em isopor para fundição</p>
           <p className="mt-6 max-w-md text-sm leading-7 text-white/65">

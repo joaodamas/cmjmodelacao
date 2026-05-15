@@ -62,8 +62,48 @@ body {
 
 .cmj-wordmark {
   font-family: var(--font-display), "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
   font-feature-settings: "ss01" 1;
+}
+
+.brand-lockup {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.46rem;
+  white-space: nowrap;
+}
+
+.brand-cmj {
+  font-size: clamp(1.65rem, 2.2vw, 2.08rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+}
+
+.brand-name {
+  position: relative;
+  top: -0.02em;
+  font-size: clamp(1.02rem, 1.4vw, 1.28rem);
+  font-weight: 650;
+  line-height: 1;
+  letter-spacing: 0.015em;
+}
+
+.brand-name::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 0.18rem;
+  background: linear-gradient(90deg, hsl(var(--accent)), transparent 86%);
+}
+
+.brand-lockup-footer .brand-cmj {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+.brand-lockup-footer .brand-name {
+  font-size: clamp(1.18rem, 1.8vw, 1.55rem);
 }
 
 /* Spacing por seção — densidade industrial */
