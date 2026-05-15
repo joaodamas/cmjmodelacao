@@ -60,54 +60,54 @@ Direção visual: industrial, discreta, técnica e objetiva. Sem dashboard color
 
 Sidebar minimalista:
 
-- [ ] Dashboard
-- [ ] Pedidos
-- [ ] Produção
-- [ ] Financeiro
-- [ ] Faturamento
-- [ ] Clientes
-- [ ] Configurações
+- [x] Dashboard
+- [x] Pedidos
+- [x] Produção
+- [x] Financeiro
+- [x] Faturamento
+- [x] Clientes
+- [x] Configurações
 
 Regras:
 
-- [ ] Não criar menus extras no MVP
-- [ ] Evitar telas duplicadas
-- [ ] Priorizar ações rápidas dentro do pedido
-- [ ] Manter navegação clara para uso diário em chão de fábrica/escritório
+- [x] Não criar menus extras no MVP
+- [x] Evitar telas duplicadas
+- [x] Priorizar ações rápidas dentro do pedido
+- [x] Manter navegação clara para uso diário em chão de fábrica/escritório
 
 ## 4. Dashboard operacional
 
 Linha 1 - indicadores discretos:
 
-- [ ] Pedidos em andamento
-- [ ] Produções atrasadas
-- [ ] Pedidos para faturar
-- [ ] Entregas da semana
+- [x] Pedidos em andamento
+- [x] Produções atrasadas
+- [x] Pedidos para faturar
+- [x] Entregas da semana
 
 Linha 2 - timeline operacional:
 
-- [ ] Últimos pedidos recebidos
-- [ ] Pedidos em orçamento
-- [ ] Produções com finalização prevista
-- [ ] Pedidos aguardando NF
-- [ ] Pedidos aguardando faturamento
+- [x] Últimos pedidos recebidos
+- [x] Pedidos em orçamento
+- [x] Produções com finalização prevista
+- [x] Pedidos aguardando NF
+- [x] Pedidos aguardando faturamento
 
 Linha 3 - calendário operacional:
 
-- [ ] Entregas
+- [x] Entregas
 - [ ] Início de produção
-- [ ] Término previsto de produção
-- [ ] Vencimentos financeiros
-- [ ] Alertas de NF
+- [x] Término previsto de produção
+- [x] Vencimentos financeiros
+- [x] Alertas de NF
 
 Linha 4 - alertas:
 
-- [ ] Pedido vence em até 2 dias
-- [ ] Pedido atrasado
-- [ ] Produção atrasada
-- [ ] NF pendente
-- [ ] Faturamento pendente
-- [ ] Cliente sem dados fiscais completos
+- [x] Pedido vence em até 2 dias
+- [x] Pedido atrasado
+- [x] Produção atrasada
+- [x] NF pendente
+- [x] Faturamento pendente
+- [x] Cliente sem dados fiscais completos
 
 ## 5. Pedidos
 
@@ -115,27 +115,27 @@ Tela principal do sistema: Kanban industrial.
 
 Colunas:
 
-- [ ] Recebido
-- [ ] Orçamento
-- [ ] Aprovado
-- [ ] Produção
-- [ ] Finalização
-- [ ] Entrega
-- [ ] NF
-- [ ] Faturado
+- [x] Recebido
+- [x] Orçamento
+- [x] Aprovado
+- [x] Produção
+- [x] Finalização
+- [x] Entrega
+- [x] NF
+- [x] Faturado
 - [ ] Finalizado
 
 Card de pedido:
 
-- [ ] Número do pedido
-- [ ] Cliente
-- [ ] Nome/descrição da peça
+- [x] Número do pedido
+- [x] Cliente
+- [x] Nome/descrição da peça
 - [ ] Tipo de projeto
-- [ ] Prazo de entrega
-- [ ] Responsável
-- [ ] Status atual
-- [ ] Alerta de prazo
-- [ ] Valor, quando disponível
+- [x] Prazo de entrega
+- [x] Responsável
+- [x] Status atual
+- [x] Alerta de prazo
+- [x] Valor, quando disponível
 - [ ] Anexos/desenhos
 
 Ações rápidas:
@@ -200,11 +200,11 @@ Campos de NF/faturamento:
 
 ## 7. Produção
 
-- [ ] Visão de produção por prazo
-- [ ] Visão de produção por responsável
-- [ ] Visão de produção atrasada
+- [x] Visão de produção por prazo
+- [x] Visão de produção por responsável
+- [x] Visão de produção atrasada
 - [ ] Lista de pedidos com início previsto
-- [ ] Lista de pedidos com término previsto
+- [x] Lista de pedidos com término previsto
 - [ ] Botão para iniciar produção
 - [ ] Botão para finalizar produção
 - [ ] Registro de observações técnicas
@@ -214,11 +214,11 @@ Campos de NF/faturamento:
 
 Controle operacional, sem complexidade de ERP.
 
-- [ ] A faturar
-- [ ] Contas a receber
-- [ ] Em atraso
-- [ ] Recebido no mês
-- [ ] Previsão próximos 15 dias
+- [x] A faturar
+- [x] Contas a receber
+- [x] Em atraso
+- [x] Recebido no mês
+- [x] Previsão próximos 15 dias
 - [ ] Marcar como pago
 - [ ] Registrar data de pagamento
 - [ ] Registrar observação financeira
@@ -227,27 +227,27 @@ Controle operacional, sem complexidade de ERP.
 
 NF como etapa operacional.
 
-- [ ] Lista de pedidos aguardando NF
-- [ ] Pedido finalizado em produção gera alerta para NF
+- [x] Lista de pedidos aguardando NF
+- [x] Pedido finalizado em produção gera alerta para NF
 - [ ] Registrar número da NF
 - [ ] Registrar data de emissão
-- [ ] Registrar valor faturado
+- [x] Registrar valor faturado
 - [ ] Marcar como faturado
 - [ ] Enviar alerta para financeiro
 
 ## 10. Clientes
 
-- [ ] Cadastro de cliente
+- [x] Cadastro de cliente
 - [ ] Razão social
-- [ ] Nome fantasia
+- [x] Nome fantasia
 - [ ] CNPJ
-- [ ] Contato principal
-- [ ] WhatsApp
+- [x] Contato principal
+- [x] WhatsApp
 - [ ] E-mail
 - [ ] Endereço
 - [ ] Observações
-- [ ] Histórico de pedidos
-- [ ] Status fiscal: completo/incompleto
+- [x] Histórico de pedidos
+- [x] Status fiscal: completo/incompleto
 
 ## 11. OCR + Gmail
 
@@ -345,17 +345,17 @@ Tabelas recomendadas:
 
 Objetivo: central operacional manual funcionando.
 
-- [ ] Login
+- [x] Login
 - [ ] Perfis de usuário
-- [ ] Dashboard operacional
-- [ ] Cadastro de clientes
-- [ ] Cadastro de pedidos
-- [ ] Kanban de pedidos
+- [x] Dashboard operacional
+- [x] Cadastro de clientes
+- [x] Cadastro de pedidos
+- [x] Kanban de pedidos
 - [ ] Upload de anexos
-- [ ] Status operacional
-- [ ] Prazos e alertas
-- [ ] Produção básica
-- [ ] Faturamento básico
+- [x] Status operacional
+- [x] Prazos e alertas
+- [x] Produção básica
+- [x] Faturamento básico
 - [ ] WhatsApp manual por template
 
 ## 16. Fase 2 - Gmail + OCR
@@ -396,4 +396,3 @@ Objetivo: central operacional manual funcionando.
 - [ ] Definir provedor WhatsApp
 - [ ] Definir se haverá acesso mobile prioritário
 - [ ] Definir se clientes terão portal externo no futuro
-
