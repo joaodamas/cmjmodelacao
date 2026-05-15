@@ -31,6 +31,7 @@ npm run build
 - `public/portfolio`: imagens reais do portfólio.
 - `DEPLOY-AUDITORIA.md`: instruções de deploy e auditoria.
 - `AUDITORIA-TECNICA.md`: checklist técnico de revisão.
+- `CHECKLIST-SISTEMA-INTERNO-CMJ.md`: escopo do futuro painel operacional interno da CMJ.
 
 ## Tracking
 
