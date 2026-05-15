@@ -12,19 +12,17 @@ NEXT_PUBLIC_META_PIXEL_ID=
 
 O Firebase Analytics já está configurado no código com o projeto `cmjmodelacao-jpproject`.
 
-## Deploy na Vercel
+## Deploy no Firebase Hosting
 
 1. Criar ou confirmar um repositório Git.
 2. Subir o projeto para GitHub, GitLab ou Bitbucket.
-3. Importar o repositório na Vercel.
-4. Confirmar:
-   - Framework Preset: `Next.js`
-   - Build Command: `npm run build`
-   - Output: padrão da Vercel
-5. Inserir variáveis de ambiente, se houver.
-6. Publicar.
-7. Apontar `www.cmjmodelacao.com.br` para a Vercel.
-8. Validar SSL e redirecionamento do domínio raiz.
+3. Confirmar projeto Firebase em `.firebaserc`: `cmjmodelacao-jpproject`.
+4. Rodar `npm run build`.
+5. Confirmar que a pasta `out/` foi gerada.
+6. Rodar `firebase deploy --only hosting`.
+7. Adicionar o domínio `cmj.jpproject.com.br` no Firebase Hosting.
+8. Apontar o DNS conforme instruções do Firebase.
+9. Validar SSL e acesso em produção.
 
 ## Eventos de conversão
 

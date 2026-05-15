@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://www.cmjmodelacao.com.br";
+export const dynamic = "force-static";
+
+const baseUrl = "https://cmj.jpproject.com.br";
 
 export default function robots(): MetadataRoute.Robots {
   return {

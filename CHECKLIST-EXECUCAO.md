@@ -119,12 +119,13 @@
 - [x] Criar guia de deploy e auditoria
 - [x] Criar checklist técnico de auditoria
 - [x] Subir projeto para GitHub/GitLab/Bitbucket
-- [ ] Importar projeto na Vercel
-- [ ] Configurar variáveis de ambiente na Vercel
-- [ ] Rodar primeiro deploy de produção
-- [ ] Configurar domínio `www.cmjmodelacao.com.br`
-- [ ] Configurar redirecionamento de domínio raiz para `www`, se aplicável
-- [ ] Validar SSL
+- [x] Configurar projeto Firebase Hosting
+- [x] Ajustar build estático para Firebase Hosting
+- [x] Configurar domínio `cmj.jpproject.com.br` no Firebase Hosting
+- [ ] Configurar variáveis de ambiente de produção, se aplicável
+- [x] Rodar primeiro deploy de produção
+- [x] Configurar DNS do domínio `cmj.jpproject.com.br`
+- [x] Validar SSL
 - [ ] Testar formulário e WhatsApp em produção
 
 ## 10. Checklist final de publicação
@@ -135,7 +136,7 @@
 - [x] Tornar contatos do footer clicáveis
 - [ ] Conferir imagens reais do portfólio
 - [ ] Conferir clientes/logos
-- [ ] Conferir SEO no HTML final
+- [x] Conferir SEO no HTML final
 - [ ] Conferir tags de tracking
 - [ ] Fazer teste completo de orçamento
 - [ ] Aprovação final da CMJ

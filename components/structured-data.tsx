@@ -1,6 +1,6 @@
 import { contact, faqs, services } from "@/lib/site-data";
 
-const baseUrl = "https://www.cmjmodelacao.com.br";
+const baseUrl = "https://cmj.jpproject.com.br";
 
 export function StructuredData() {
   const data = [

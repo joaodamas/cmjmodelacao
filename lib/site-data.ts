@@ -10,7 +10,7 @@ export const navItems = [
 export const contact = {
   whatsapp: "(11) 95819-0776",
   phone: "(11) 4342-7908",
-  site: "www.cmjmodelacao.com.br",
+  site: "cmj.jpproject.com.br",
   location: "São Bernardo do Campo/SP"
 };
 

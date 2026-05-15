@@ -6,7 +6,7 @@ import { StructuredData } from "@/components/structured-data";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.cmjmodelacao.com.br"),
+  metadataBase: new URL("https://cmj.jpproject.com.br"),
   title: "CMJ Modelação | Moldes em Isopor para Fundição",
   description:
     "Fabricação de moldes em isopor para fundição em alumínio, aço e ferro fundido. Estrutura CNC, acabamento técnico e atendimento industrial em São Bernardo do Campo/SP.",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "CMJ Modelação | Moldes em Isopor para Fundição",
     description:
       "Moldes em isopor para fundição com estrutura CNC, acabamento técnico e atendimento B2B industrial.",
-    url: "https://www.cmjmodelacao.com.br",
+    url: "https://cmj.jpproject.com.br",
     siteName: "CMJ Modelação",
     images: [
       {
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     images: ["/opengraph-image"]
   },
   alternates: {
-    canonical: "https://www.cmjmodelacao.com.br"
+    canonical: "https://cmj.jpproject.com.br"
   },
   robots: {
     index: true,

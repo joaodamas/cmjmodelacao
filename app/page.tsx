@@ -474,7 +474,7 @@ function Footer() {
             </p>
             <p>
               Site:{" "}
-              <a className="hover:text-white" href="https://www.cmjmodelacao.com.br">
+              <a className="hover:text-white" href="https://cmj.jpproject.com.br">
                 {contact.site}
               </a>
             </p>
