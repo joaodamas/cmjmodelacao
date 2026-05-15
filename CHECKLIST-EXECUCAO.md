@@ -118,7 +118,7 @@
 - [x] Criar `.gitignore` para preparar repositório/deploy
 - [x] Criar guia de deploy e auditoria
 - [x] Criar checklist técnico de auditoria
-- [ ] Subir projeto para GitHub/GitLab/Bitbucket
+- [x] Subir projeto para GitHub/GitLab/Bitbucket
 - [ ] Importar projeto na Vercel
 - [ ] Configurar variáveis de ambiente na Vercel
 - [ ] Rodar primeiro deploy de produção
