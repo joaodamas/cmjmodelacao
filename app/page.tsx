@@ -97,10 +97,7 @@ function Hero() {
       {/* Conteúdo do hero */}
       <div className="container relative flex min-h-[88vh] flex-col justify-end pb-16 pt-32 md:min-h-[92vh] md:pb-20 md:pt-40">
         <div className="max-w-3xl">
-          <p className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-white/55">
-            CMJ Modelação · São Bernardo do Campo/SP
-          </p>
-          <h1 className="mt-5 font-display text-[2.6rem] font-semibold leading-[0.98] tracking-tightest text-white md:text-[4rem] lg:text-[4.6rem]">
+          <h1 className="font-display text-[2.6rem] font-semibold leading-[0.98] tracking-tightest text-white md:text-[4rem] lg:text-[4.6rem]">
             Moldes em EPS para fundição produzidos sob{" "}
             <span className="text-accent">projeto técnico</span>.
           </h1>
