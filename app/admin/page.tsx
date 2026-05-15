@@ -205,15 +205,16 @@ export default function AdminPage() {
   const [authenticated, setAuthenticated] = useState(false);
   const [activeMenu, setActiveMenu] = useState("Dashboard");
   const [mobileMenu, setMobileMenu] = useState(false);
+  const [modal, setModal] = useState<"new-order" | null>(null);
 
   if (!authenticated) {
     return <LoginScreen onLogin={() => setAuthenticated(true)} />;
   }
 
   return (
-    <main className="min-h-screen bg-[#f3f1ec] text-[#18212b]">
+    <main className="min-h-screen bg-[#eef4fb] text-[#10243a]">
       <div className="flex min-h-screen">
-        <aside className="hidden w-64 shrink-0 border-r border-black/10 bg-[#1d252e] text-white lg:block">
+        <aside className="hidden w-[272px] shrink-0 border-r border-[#123b66] bg-[#071f3a] text-white lg:block">
           <AdminBrand />
           <nav className="px-3 py-5">
             {menu.map((item) => (
@@ -222,45 +223,47 @@ export default function AdminPage() {
                 type="button"
                 onClick={() => setActiveMenu(item)}
                 className={cn(
-                  "flex w-full items-center justify-between border-l-2 px-4 py-3 text-left text-sm font-medium text-white/65 transition-colors hover:border-[#2784d8] hover:bg-white/5 hover:text-white",
+                  "flex w-full items-center justify-between border-l-2 px-4 py-3 text-left text-sm font-medium text-white/62 transition-colors hover:border-[#35a2ff] hover:bg-[#0d335d] hover:text-white",
                   activeMenu === item
-                    ? "border-[#2784d8] bg-white/8 text-white"
+                    ? "border-[#35a2ff] bg-[#0d335d] text-white"
                     : "border-transparent"
                 )}
               >
                 {item}
-                {activeMenu === item ? <span className="h-1.5 w-1.5 bg-[#2784d8]" /> : null}
+                {activeMenu === item ? <span className="h-1.5 w-1.5 bg-[#35a2ff]" /> : null}
               </button>
             ))}
           </nav>
         </aside>
 
         <section className="min-w-0 flex-1">
-          <header className="sticky top-0 z-30 border-b border-black/10 bg-[#f8f6f0]/95 backdrop-blur">
+          <header className="sticky top-0 z-30 border-b border-[#c7d8ea] bg-[#f8fbff]/95 backdrop-blur">
             <div className="flex h-16 items-center justify-between px-4 md:px-6">
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setMobileMenu((value) => !value)}
-                  className="grid h-10 w-10 place-items-center border border-black/15 bg-white lg:hidden"
+                  className="grid h-10 w-10 place-items-center border border-[#c7d8ea] bg-white text-[#0a2b4f] lg:hidden"
                   aria-label="Abrir menu"
                 >
                   <MenuBars className="h-5 w-5" />
                 </button>
                 <div>
-                  <p className="font-display text-lg font-bold text-[#111820]">Central de Operação</p>
-                  <p className="text-xs text-[#607080]">Pedidos, produção, entrega e faturamento.</p>
+                  <p className="font-display text-lg font-bold text-[#0a2540]">Central de Operação</p>
+                  <p className="text-xs text-[#5b7189]">Pedidos, produção, entrega e faturamento.</p>
                 </div>
               </div>
               <div className="hidden items-center gap-3 md:flex">
-                <span className="border border-black/10 bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#607080]">
+                <span className="border border-[#c7d8ea] bg-white px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#5b7189]">
                   15/05 · operação
                 </span>
-                <Button size="sm" variant="accent">Novo pedido</Button>
+                <Button size="sm" variant="accent" onClick={() => setModal("new-order")}>
+                  Novo pedido
+                </Button>
               </div>
             </div>
             {mobileMenu ? (
-              <nav className="grid border-t border-black/10 bg-[#1d252e] p-3 lg:hidden">
+              <nav className="grid border-t border-[#123b66] bg-[#071f3a] p-3 lg:hidden">
                 {menu.map((item) => (
                   <button
                     key={item}
@@ -280,8 +283,8 @@ export default function AdminPage() {
 
           <div className="px-4 py-6 md:px-6 lg:px-8">
             {activeMenu === "Dashboard" ? <Dashboard /> : null}
-            {activeMenu === "Pedidos" ? <OrdersBoard /> : null}
-            {activeMenu === "Produção" ? <ProductionPage /> : null}
+            {activeMenu === "Pedidos" ? <OrdersBoard onNewOrder={() => setModal("new-order")} /> : null}
+            {activeMenu === "Produção" ? <ProductionPage onNewOrder={() => setModal("new-order")} /> : null}
             {activeMenu === "Financeiro" ? <FinancePage /> : null}
             {activeMenu === "Faturamento" ? <BillingPage /> : null}
             {activeMenu === "Clientes" ? <ClientsPage /> : null}
@@ -291,6 +294,7 @@ export default function AdminPage() {
           </div>
         </section>
       </div>
+      {modal === "new-order" ? <NewOrderModal onClose={() => setModal(null)} /> : null}
     </main>
   );
 }
@@ -313,12 +317,13 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
   }
 
   return (
-    <main className="grid min-h-screen bg-[#171f28] text-white lg:grid-cols-[0.95fr_1.05fr]">
+    <main className="grid min-h-screen bg-[#071f3a] text-white lg:grid-cols-[0.95fr_1.05fr]">
       <section className="relative hidden overflow-hidden lg:block">
         <div className="absolute inset-0 bg-[url('/portfolio/operacao-medicao-molde-eps.jpg')] bg-cover bg-center opacity-45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#171f28] via-[#171f28]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#071f3a] via-[#071f3a]/84 to-[#071f3a]/18" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(53,162,255,0.16)_1px,transparent_1px),linear-gradient(rgba(53,162,255,0.08)_1px,transparent_1px)] bg-[size:48px_48px] opacity-25" />
         <div className="relative flex h-full flex-col justify-end p-12">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#2784d8]">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-[#35a2ff]">
             Sistema interno CMJ
           </p>
           <h1 className="mt-5 max-w-xl font-display text-5xl font-bold leading-tight tracking-tight text-white">
@@ -334,7 +339,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
       <section className="flex items-center justify-center px-5 py-12">
         <div className="w-full max-w-md">
           <AdminBrand />
-          <div className="mt-10 border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.7)]">
+          <div className="mt-10 border border-[#1a4777] bg-[#0a2b4f] p-6 shadow-[0_24px_80px_-40px_rgba(0,0,0,0.7)]">
             <p className="font-display text-2xl font-bold">Acesso operacional</p>
             <p className="mt-2 text-sm leading-6 text-white/55">
               MVP de interface. A autenticação real entra com Supabase Auth na próxima fase.
@@ -347,7 +352,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
                   name="email"
                   type="email"
                   defaultValue="operacao@cmj.local"
-                  className="h-11 border border-white/10 bg-black/20 px-3 text-white outline-none focus:border-[#2784d8]"
+                  className="h-11 border border-[#1a4777] bg-[#06182c] px-3 text-white outline-none focus:border-[#35a2ff]"
                 />
               </label>
               <label className="grid gap-2 text-sm">
@@ -356,7 +361,7 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
                   name="password"
                   type="password"
                   defaultValue="cmj"
-                  className="h-11 border border-white/10 bg-black/20 px-3 text-white outline-none focus:border-[#2784d8]"
+                  className="h-11 border border-[#1a4777] bg-[#06182c] px-3 text-white outline-none focus:border-[#35a2ff]"
                 />
               </label>
               {error ? <p className="text-sm text-[#f5a524]">{error}</p> : null}
@@ -374,12 +379,12 @@ function LoginScreen({ onLogin }: { onLogin: () => void }) {
 
 function AdminBrand() {
   return (
-    <div className="border-b border-white/10 p-5">
+    <div className="border-b border-[#123b66] p-5">
       <strong className="cmj-wordmark brand-lockup block text-white">
         <span className="brand-cmj">CMJ</span>
         <span className="brand-name">Operação</span>
       </strong>
-      <p className="mt-3 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-white/45">
+      <p className="mt-3 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-[#8db8df]">
         Painel industrial interno
       </p>
     </div>
@@ -393,19 +398,19 @@ function Dashboard() {
         {metrics.map((metric) => {
           const Icon = metric.icon;
           return (
-            <article key={metric.label} className="border border-black/10 bg-white p-5">
+            <article key={metric.label} className="border border-[#c7d8ea] bg-white p-5 shadow-[0_16px_40px_-34px_rgba(10,43,79,0.9)]">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-sm text-[#607080]">{metric.label}</p>
-                  <strong className="mt-3 block font-display text-3xl text-[#111820]">
+                  <p className="text-sm text-[#5b7189]">{metric.label}</p>
+                  <strong className="mt-3 block font-display text-3xl text-[#0a2540]">
                     {metric.value}
                   </strong>
                 </div>
-                <span className="grid h-10 w-10 place-items-center border border-black/10 text-[#2784d8]">
+                <span className="grid h-10 w-10 place-items-center border border-[#c7d8ea] bg-[#eef6ff] text-[#0878d8]">
                   <Icon className="h-5 w-5" />
                 </span>
               </div>
-              <p className="mt-4 text-sm text-[#607080]">{metric.note}</p>
+              <p className="mt-4 text-sm text-[#5b7189]">{metric.note}</p>
             </article>
           );
         })}
@@ -426,7 +431,7 @@ function Dashboard() {
 
 function TimelinePanel() {
   return (
-    <article className="border border-black/10 bg-white">
+    <article className="border border-[#c7d8ea] bg-white">
       <PanelTitle
         title="Timeline operacional"
         subtitle="Movimentos que precisam de atenção no dia."
@@ -434,11 +439,11 @@ function TimelinePanel() {
       <div className="divide-y divide-black/10">
         {timeline.map((item) => (
           <div key={`${item.status}-${item.time}`} className="grid grid-cols-[96px_1fr_56px] gap-4 px-5 py-4">
-            <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#2784d8]">
+            <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#0878d8]">
               {item.status}
             </span>
-            <p className="text-sm text-[#354353]">{item.text}</p>
-            <span className="text-right font-mono text-xs text-[#8a96a3]">{item.time}</span>
+            <p className="text-sm text-[#29445f]">{item.text}</p>
+            <span className="text-right font-mono text-xs text-[#6d8298]">{item.time}</span>
           </div>
         ))}
       </div>
@@ -448,17 +453,17 @@ function TimelinePanel() {
 
 function CalendarPanel() {
   return (
-    <article className="border border-black/10 bg-white">
+    <article className="border border-[#c7d8ea] bg-white">
       <PanelTitle title="Calendário da semana" subtitle="Entrega, produção, fiscal e orçamento." />
       <div className="grid gap-3 p-5">
         {calendar.map((item) => (
-          <div key={item.label} className="grid grid-cols-[48px_1fr] border border-black/10">
-            <span className="grid place-items-center bg-[#eef1f3] py-3 font-display text-xl font-bold text-[#111820]">
+          <div key={item.label} className="grid grid-cols-[48px_1fr] border border-[#c7d8ea]">
+            <span className="grid place-items-center bg-[#dbeafe] py-3 font-display text-xl font-bold text-[#0a2b4f]">
               {item.day}
             </span>
             <div className="px-4 py-3">
-              <p className="text-sm font-semibold text-[#111820]">{item.label}</p>
-              <p className="mt-1 text-xs text-[#607080]">{item.type}</p>
+              <p className="text-sm font-semibold text-[#0a2540]">{item.label}</p>
+              <p className="mt-1 text-xs text-[#5b7189]">{item.type}</p>
             </div>
           </div>
         ))}
@@ -469,11 +474,11 @@ function CalendarPanel() {
 
 function AlertsPanel() {
   return (
-    <article className="border border-black/10 bg-white">
+    <article className="border border-[#c7d8ea] bg-white">
       <PanelTitle title="Alertas" subtitle="Sem ruído. Só o que precisa de ação." />
       <div className="grid gap-2 p-5">
         {alerts.map((alert) => (
-          <div key={alert} className="flex items-center gap-3 border border-[#ead8aa] bg-[#fff8e8] px-4 py-3 text-sm text-[#5f4a16]">
+          <div key={alert} className="flex items-center gap-3 border border-[#f2cf78] bg-[#fff8e6] px-4 py-3 text-sm text-[#604400]">
             <span className="h-2 w-2 bg-[#d99b16]" />
             {alert}
           </div>
@@ -489,17 +494,17 @@ function ProductionSnapshot() {
   );
 
   return (
-    <article className="border border-black/10 bg-white">
+    <article className="border border-[#c7d8ea] bg-white">
       <PanelTitle title="Produção" subtitle="Pedidos na fila ou em execução." />
       <div className="divide-y divide-black/10">
         {productionOrders.map((order) => (
           <div key={order.id} className="grid gap-2 px-5 py-4 md:grid-cols-[88px_1fr_120px] md:items-center">
-            <span className="font-mono text-xs text-[#607080]">#{order.id}</span>
+            <span className="font-mono text-xs text-[#5b7189]">#{order.id}</span>
             <div>
-              <p className="text-sm font-semibold text-[#111820]">{order.part}</p>
-              <p className="mt-1 text-xs text-[#607080]">{order.client}</p>
+              <p className="text-sm font-semibold text-[#0a2540]">{order.part}</p>
+              <p className="mt-1 text-xs text-[#5b7189]">{order.client}</p>
             </div>
-            <span className="text-sm text-[#354353]">{order.status}</span>
+            <span className="text-sm text-[#29445f]">{order.status}</span>
           </div>
         ))}
       </div>
@@ -507,7 +512,7 @@ function ProductionSnapshot() {
   );
 }
 
-function OrdersBoard() {
+function OrdersBoard({ onNewOrder }: { onNewOrder: () => void }) {
   const grouped = useMemo(() => {
     return columns.map((column) => ({
       column,
@@ -519,23 +524,23 @@ function OrdersBoard() {
     <section className="grid gap-5">
       <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
         <div>
-          <h1 className="font-display text-3xl font-bold text-[#111820]">Pedidos</h1>
-          <p className="mt-2 text-sm text-[#607080]">
+          <h1 className="font-display text-3xl font-bold text-[#0a2540]">Pedidos</h1>
+          <p className="mt-2 text-sm text-[#5b7189]">
             Fluxo industrial do recebimento ao faturamento.
           </p>
         </div>
-        <Button variant="accent">Cadastrar pedido</Button>
+        <Button variant="accent" onClick={onNewOrder}>Cadastrar pedido</Button>
       </div>
 
       <div className="overflow-x-auto pb-3">
         <div className="grid min-w-[1180px] grid-cols-8 gap-3">
           {grouped.map((group) => (
-            <div key={group.column} className="border border-black/10 bg-[#ebe9e2]">
-              <div className="flex items-center justify-between border-b border-black/10 px-3 py-3">
-                <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#354353]">
+            <div key={group.column} className="border border-[#c7d8ea] bg-[#dceafb]">
+              <div className="flex items-center justify-between border-b border-[#c7d8ea] px-3 py-3">
+                <span className="font-mono text-[0.68rem] uppercase tracking-[0.14em] text-[#29445f]">
                   {group.column}
                 </span>
-                <span className="text-xs text-[#607080]">{group.items.length}</span>
+                <span className="border border-[#aac5df] bg-white px-2 py-0.5 text-xs text-[#5b7189]">{group.items.length}</span>
               </div>
               <div className="grid gap-3 p-3">
                 {group.items.map((order) => (
@@ -552,14 +557,14 @@ function OrdersBoard() {
 
 function OrderCard({ order }: { order: Order }) {
   return (
-    <article className="border border-black/10 bg-white p-3 shadow-[0_12px_32px_-28px_rgba(0,0,0,0.7)]">
+    <article className="border border-[#c7d8ea] bg-white p-3 shadow-[0_12px_32px_-28px_rgba(10,43,79,0.9)]">
       <div className="flex items-start justify-between gap-3">
-        <span className="font-mono text-xs font-semibold text-[#2784d8]">Pedido #{order.id}</span>
-        {order.alert ? <span className="bg-[#fff3cf] px-2 py-1 text-[0.65rem] text-[#6a4a00]">{order.alert}</span> : null}
+        <span className="font-mono text-xs font-semibold text-[#0878d8]">Pedido #{order.id}</span>
+        {order.alert ? <span className="border border-[#f2cf78] bg-[#fff8e6] px-2 py-1 text-[0.65rem] text-[#6a4a00]">{order.alert}</span> : null}
       </div>
-      <p className="mt-3 text-sm font-semibold text-[#111820]">{order.client}</p>
-      <p className="mt-1 text-sm leading-5 text-[#607080]">{order.part}</p>
-      <div className="mt-4 grid gap-2 border-t border-black/10 pt-3 text-xs text-[#607080]">
+      <p className="mt-3 text-sm font-semibold text-[#0a2540]">{order.client}</p>
+      <p className="mt-1 text-sm leading-5 text-[#5b7189]">{order.part}</p>
+      <div className="mt-4 grid gap-2 border-t border-[#d8e5f1] pt-3 text-xs text-[#5b7189]">
         <span>Entrega: {order.due}</span>
         <span>Resp.: {order.owner}</span>
         {order.value ? <span>Valor: {order.value}</span> : null}
@@ -568,7 +573,7 @@ function OrderCard({ order }: { order: Order }) {
   );
 }
 
-function ProductionPage() {
+function ProductionPage({ onNewOrder }: { onNewOrder: () => void }) {
   const productionOrders = orders.filter((order) =>
     ["Aprovado", "Produção", "Finalização", "Entrega"].includes(order.status)
   );
@@ -579,6 +584,7 @@ function ProductionPage() {
         title="Produção"
         subtitle="Fila técnica para acompanhar início, execução, acabamento e liberação."
         action="Registrar produção"
+        onAction={onNewOrder}
       />
 
       <div className="grid gap-4 md:grid-cols-3">
@@ -587,11 +593,11 @@ function ProductionPage() {
         <OperationalCard label="Atrasados" value="2" note="Exigem decisão operacional" tone="warning" />
       </div>
 
-      <article className="border border-black/10 bg-white">
+      <article className="border border-[#c7d8ea] bg-white">
         <PanelTitle title="Fila de produção" subtitle="Pedidos ordenados por urgência operacional." />
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] border-collapse text-left text-sm">
-            <thead className="bg-[#eef1f3] text-xs uppercase tracking-[0.12em] text-[#607080]">
+            <thead className="bg-[#dbeafe] text-xs uppercase tracking-[0.12em] text-[#4b6682]">
               <tr>
                 <th className="px-5 py-3 font-semibold">Pedido</th>
                 <th className="px-5 py-3 font-semibold">Cliente / peça</th>
@@ -604,16 +610,16 @@ function ProductionPage() {
             <tbody className="divide-y divide-black/10">
               {productionOrders.map((order) => (
                 <tr key={order.id}>
-                  <td className="px-5 py-4 font-mono text-xs text-[#2784d8]">#{order.id}</td>
+                  <td className="px-5 py-4 font-mono text-xs text-[#0878d8]">#{order.id}</td>
                   <td className="px-5 py-4">
-                    <p className="font-semibold text-[#111820]">{order.client}</p>
-                    <p className="mt-1 text-[#607080]">{order.part}</p>
+                    <p className="font-semibold text-[#0a2540]">{order.client}</p>
+                    <p className="mt-1 text-[#5b7189]">{order.part}</p>
                   </td>
                   <td className="px-5 py-4">{order.status}</td>
                   <td className="px-5 py-4">{order.owner}</td>
                   <td className="px-5 py-4">{order.due}</td>
                   <td className="px-5 py-4">
-                    <button className="border border-black/10 px-3 py-2 text-xs font-semibold text-[#354353] hover:border-[#2784d8]">
+                    <button className="border border-[#c7d8ea] px-3 py-2 text-xs font-semibold text-[#29445f] hover:border-[#0878d8] hover:text-[#0878d8]">
                       Atualizar
                     </button>
                   </td>
@@ -718,14 +724,24 @@ function ClientsPage() {
   );
 }
 
-function PageHeader({ title, subtitle, action }: { title: string; subtitle: string; action: string }) {
+function PageHeader({
+  title,
+  subtitle,
+  action,
+  onAction
+}: {
+  title: string;
+  subtitle: string;
+  action: string;
+  onAction?: () => void;
+}) {
   return (
     <div className="flex flex-col justify-between gap-3 md:flex-row md:items-end">
       <div>
-        <h1 className="font-display text-3xl font-bold text-[#111820]">{title}</h1>
-        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#607080]">{subtitle}</p>
+        <h1 className="font-display text-3xl font-bold text-[#0a2540]">{title}</h1>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5b7189]">{subtitle}</p>
       </div>
-      <Button variant="accent">{action}</Button>
+      <Button variant="accent" onClick={onAction}>{action}</Button>
     </div>
   );
 }
@@ -744,13 +760,13 @@ function OperationalCard({
   return (
     <article
       className={cn(
-        "border bg-white p-5",
-        tone === "warning" ? "border-[#ead8aa]" : "border-black/10"
+        "border bg-white p-5 shadow-[0_14px_34px_-30px_rgba(10,43,79,0.9)]",
+        tone === "warning" ? "border-[#f2cf78]" : "border-[#c7d8ea]"
       )}
     >
-      <p className="text-sm text-[#607080]">{label}</p>
-      <strong className="mt-3 block font-display text-3xl text-[#111820]">{value}</strong>
-      <p className={cn("mt-4 text-sm", tone === "warning" ? "text-[#7a5600]" : "text-[#607080]")}>
+      <p className="text-sm text-[#5b7189]">{label}</p>
+      <strong className="mt-3 block font-display text-3xl text-[#0a2540]">{value}</strong>
+      <p className={cn("mt-4 text-sm", tone === "warning" ? "text-[#7a5600]" : "text-[#5b7189]")}>
         {note}
       </p>
     </article>
@@ -769,11 +785,11 @@ function DataTable({
   rows: Array<Array<string | ReactNode>>;
 }) {
   return (
-    <article className="border border-black/10 bg-white">
+    <article className="border border-[#c7d8ea] bg-white">
       <PanelTitle title={title} subtitle={subtitle} />
       <div className="overflow-x-auto">
         <table className="w-full min-w-[760px] border-collapse text-left text-sm">
-          <thead className="bg-[#eef1f3] text-xs uppercase tracking-[0.12em] text-[#607080]">
+          <thead className="bg-[#dbeafe] text-xs uppercase tracking-[0.12em] text-[#4b6682]">
             <tr>
               {headers.map((header) => (
                 <th key={header} className="px-5 py-3 font-semibold">
@@ -786,7 +802,7 @@ function DataTable({
             {rows.map((row, index) => (
               <tr key={index}>
                 {row.map((cell, cellIndex) => (
-                  <td key={cellIndex} className="px-5 py-4 text-[#354353]">
+                  <td key={cellIndex} className="px-5 py-4 text-[#29445f]">
                     {cell}
                   </td>
                 ))}
@@ -807,9 +823,9 @@ function StatusPill({ status }: { status: string }) {
     <span
       className={cn(
         "inline-flex border px-2.5 py-1 text-xs font-semibold",
-        warning ? "border-[#ead8aa] bg-[#fff8e8] text-[#6a4a00]" : null,
-        success ? "border-[#cce0d2] bg-[#eef8f0] text-[#27643a]" : null,
-        !warning && !success ? "border-black/10 bg-[#eef1f3] text-[#354353]" : null
+        warning ? "border-[#f2cf78] bg-[#fff8e6] text-[#6a4a00]" : null,
+        success ? "border-[#98c6ff] bg-[#eaf4ff] text-[#0a579a]" : null,
+        !warning && !success ? "border-[#c7d8ea] bg-[#eef6ff] text-[#29445f]" : null
       )}
     >
       {status}
@@ -817,18 +833,107 @@ function StatusPill({ status }: { status: string }) {
   );
 }
 
+function NewOrderModal({ onClose }: { onClose: () => void }) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    onClose();
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-[#041526]/72 px-4 py-6 backdrop-blur-sm">
+      <section className="max-h-[92vh] w-full max-w-3xl overflow-y-auto border border-[#2b6fa8] bg-[#f8fbff] shadow-[0_30px_120px_-50px_rgba(0,0,0,0.85)]">
+        <div className="flex items-start justify-between gap-5 border-b border-[#c7d8ea] bg-white px-6 py-5">
+          <div>
+            <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-[#0878d8]">
+              Cadastro operacional
+            </p>
+            <h2 className="mt-2 font-display text-2xl font-bold text-[#0a2540]">Novo pedido</h2>
+            <p className="mt-2 text-sm text-[#5b7189]">
+              Entrada mínima para abrir análise, orçamento ou produção.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            className="grid h-10 w-10 place-items-center border border-[#c7d8ea] bg-white text-[#29445f] hover:border-[#0878d8] hover:text-[#0878d8]"
+            aria-label="Fechar modal"
+          >
+            ×
+          </button>
+        </div>
+
+        <form className="grid gap-6 p-6" onSubmit={handleSubmit}>
+          <div className="grid gap-4 md:grid-cols-2">
+            <AdminField label="Cliente" placeholder="Ex.: Grupo Aethra" />
+            <AdminField label="Contato / responsável" placeholder="Ex.: Compras técnicas" />
+            <AdminField label="Peça / projeto" placeholder="Ex.: Molde EPS automotivo" />
+            <AdminField label="Prazo solicitado" placeholder="Ex.: 20/05/2026" />
+            <AdminField label="Material de fundição" placeholder="Alumínio, aço, ferro fundido..." />
+            <AdminField label="Responsável interno" placeholder="Produção, CNC Router, orçamento..." />
+          </div>
+
+          <label className="grid gap-2 text-sm">
+            <span className="font-semibold text-[#29445f]">Observações técnicas</span>
+            <textarea
+              rows={5}
+              className="border border-[#c7d8ea] bg-white px-3 py-3 text-[#10243a] outline-none focus:border-[#0878d8]"
+              placeholder="Descreva geometria, dimensões, arquivo recebido, referência física, urgência e pontos críticos."
+            />
+          </label>
+
+          <div className="grid gap-3 border border-[#c7d8ea] bg-white p-4 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p className="text-sm font-semibold text-[#0a2540]">Anexos do pedido</p>
+              <p className="mt-1 text-sm text-[#5b7189]">
+                Campo visual preparado para desenhos, PDF, DXF, STEP ou fotos. Storage entra com Supabase.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="border border-[#c7d8ea] px-4 py-2 text-sm font-semibold text-[#29445f] hover:border-[#0878d8] hover:text-[#0878d8]"
+            >
+              Selecionar arquivo
+            </button>
+          </div>
+
+          <div className="flex flex-col-reverse gap-3 border-t border-[#c7d8ea] pt-5 sm:flex-row sm:justify-end">
+            <Button type="button" variant="outline" onClick={onClose}>
+              Cancelar
+            </Button>
+            <Button type="submit" variant="accent">
+              Criar pedido
+            </Button>
+          </div>
+        </form>
+      </section>
+    </div>
+  );
+}
+
+function AdminField({ label, placeholder }: { label: string; placeholder: string }) {
+  return (
+    <label className="grid gap-2 text-sm">
+      <span className="font-semibold text-[#29445f]">{label}</span>
+      <input
+        className="h-11 border border-[#c7d8ea] bg-white px-3 text-[#10243a] outline-none focus:border-[#0878d8]"
+        placeholder={placeholder}
+      />
+    </label>
+  );
+}
+
 function ModulePlaceholder({ title }: { title: string }) {
   return (
-    <section className="grid min-h-[520px] place-items-center border border-black/10 bg-white p-8 text-center">
+    <section className="grid min-h-[520px] place-items-center border border-[#c7d8ea] bg-white p-8 text-center">
       <div className="max-w-md">
-        <GlyphCaliper className="mx-auto h-10 w-10 text-[#2784d8]" />
-        <h1 className="mt-5 font-display text-3xl font-bold text-[#111820]">{title}</h1>
-        <p className="mt-3 text-sm leading-7 text-[#607080]">
+        <GlyphCaliper className="mx-auto h-10 w-10 text-[#0878d8]" />
+        <h1 className="mt-5 font-display text-3xl font-bold text-[#0a2540]">{title}</h1>
+        <p className="mt-3 text-sm leading-7 text-[#5b7189]">
           Módulo reservado para a próxima etapa. O MVP começa pelo dashboard operacional e pelo
           Kanban de pedidos.
         </p>
-        <div className="mt-6 inline-flex items-center gap-2 border border-black/10 px-4 py-2 text-sm text-[#354353]">
-          <CheckMark className="h-4 w-4 text-[#2784d8]" />
+        <div className="mt-6 inline-flex items-center gap-2 border border-[#c7d8ea] px-4 py-2 text-sm text-[#29445f]">
+          <CheckMark className="h-4 w-4 text-[#0878d8]" />
           Estrutura de navegação criada
         </div>
       </div>
@@ -838,9 +943,9 @@ function ModulePlaceholder({ title }: { title: string }) {
 
 function PanelTitle({ title, subtitle }: { title: string; subtitle: string }) {
   return (
-    <div className="border-b border-black/10 px-5 py-4">
-      <h2 className="font-display text-lg font-bold text-[#111820]">{title}</h2>
-      <p className="mt-1 text-sm text-[#607080]">{subtitle}</p>
+    <div className="border-b border-[#c7d8ea] px-5 py-4">
+      <h2 className="font-display text-lg font-bold text-[#0a2540]">{title}</h2>
+      <p className="mt-1 text-sm text-[#5b7189]">{subtitle}</p>
     </div>
   );
 }

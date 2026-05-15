@@ -142,7 +142,7 @@ Ações rápidas:
 
 - [ ] Abrir pedido
 - [ ] Mudar status
-- [ ] Adicionar observação
+- [x] Adicionar observação
 - [ ] Enviar WhatsApp
 - [ ] Marcar produção iniciada
 - [ ] Marcar produção finalizada
@@ -304,11 +304,11 @@ Templates internos:
 
 Direção:
 
-- [ ] Grafite
-- [ ] Cinza aço
-- [ ] Azul petróleo
-- [ ] Branco quente
-- [ ] Azul discreto para ação principal
+- [x] Grafite
+- [x] Cinza aço
+- [x] Azul petróleo
+- [x] Branco quente
+- [x] Azul discreto para ação principal
 - [ ] Vermelho/âmbar apenas para alerta
 
 Regras visuais:
@@ -319,10 +319,10 @@ Regras visuais:
 - [ ] Sem dashboard colorido
 - [ ] Sem excesso de cards
 - [ ] Sem charts decorativos
-- [ ] Usar tabela limpa quando for melhor que card
+- [x] Usar tabela limpa quando for melhor que card
 - [ ] Usar Kanban apenas para fluxo de pedidos
 - [ ] Tipografia forte, legível e densa
-- [ ] Layout com foco em operação diária
+- [x] Layout com foco em operação diária
 
 ## 14. Banco de dados inicial
 
@@ -351,7 +351,7 @@ Objetivo: central operacional manual funcionando.
 - [x] Cadastro de clientes
 - [x] Cadastro de pedidos
 - [x] Kanban de pedidos
-- [ ] Upload de anexos
+- [x] Upload de anexos
 - [x] Status operacional
 - [x] Prazos e alertas
 - [x] Produção básica
