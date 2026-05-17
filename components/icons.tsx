@@ -169,3 +169,74 @@ export function GlyphPackage(props: IconProps) {
     </svg>
   );
 }
+
+export function GlyphUsers(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="9" cy="8" r="3" />
+      <path d="M3 20c0-3 3-5 6-5s6 2 6 5" />
+      <circle cx="17" cy="9" r="2.4" />
+      <path d="M15 20c0-2.5 2-4 4-4" />
+    </svg>
+  );
+}
+
+export function GlyphCash(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 6h18v12H3z" />
+      <circle cx="12" cy="12" r="3" />
+      <path d="M6 9v6M18 9v6" />
+    </svg>
+  );
+}
+
+export function GlyphPaperclip(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M16 7l-7 7a3 3 0 0 0 4 4l8-8a5 5 0 0 0-7-7l-9 9a7 7 0 0 0 10 10l5-5" />
+    </svg>
+  );
+}
+
+export function ChevronLeft(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M15 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function ChevronRight(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M9 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+export function SearchGlyph(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="11" cy="11" r="6" />
+      <path d="M16 16l5 5" />
+    </svg>
+  );
+}
+
+export function FilterGlyph(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 5h18l-7 9v6l-4-2v-4z" />
+    </svg>
+  );
+}
+
+export function AlertGlyph(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3l10 18H2z" />
+      <path d="M12 10v5M12 18v0.5" />
+    </svg>
+  );
+}
